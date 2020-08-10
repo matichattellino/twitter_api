@@ -5,6 +5,7 @@ const config = require('./config');
 const T = new Twit(config);
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const store = require('./config/store')
 
 const app = express();
 
@@ -26,9 +27,15 @@ function findTweets(term, callback) {
 }
 
 app.get("/", (request, response, next) => {
+    store.saveSearchTerm(request.query.search)
     findTweets(request.query.search, (tweets) => { response.json(tweets); })
 });
 
+//app.use('/api/searchs', require('./routes/searchs'))
+app.get("/history", (request, response, next) => {
+    store.getSearchTerms((tweets) => { response.json(tweets); })
+})
+
 app.listen(5000, () => {
     console.log("El servidor está inicializado en el puerto 5000");
-   });
+});
