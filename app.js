@@ -1,10 +1,11 @@
 console.log("The bot is starting");
 const express = require('express');
 const Twit = require('twit');
+const config = require('./config');
 const T = new Twit(config);
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const store = require('./config/store');
+const store = require('./config/store')
 
 const app = express();
 const port = process.env.PORT || 5000;
