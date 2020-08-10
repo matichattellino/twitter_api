@@ -36,6 +36,6 @@ app.get("/history", (request, response, next) => {
     store.getSearchTerms((tweets) => { response.json(tweets); })
 })
 
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
     console.log("El servidor está inicializado en el puerto 5000");
 });
