@@ -8,8 +8,9 @@ const bodyParser = require('body-parser');
 const store = require('./config/store')
 
 const app = express();
+const port = process.env.PORT || 5000;
 
-const TOTAL_TWEETS = 5;
+const TOTAL_TWEETS = 10;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,6 +37,6 @@ app.get("/history", (request, response, next) => {
     store.getSearchTerms((tweets) => { response.json(tweets); })
 })
 
-app.listen(5000, '0.0.0.0', () => {
+app.listen(port, '0.0.0.0',  () => {
     console.log("El servidor está inicializado en el puerto 5000");
 });
