@@ -20,7 +20,7 @@ function findTweets(term, callback) {
     return T.get('search/tweets', {q: term, count: TOTAL_TWEETS}, (err, data, response) => {
         // console.debug(err, data);
         let tweets = [];
-        for (let tweet of data.statuses) {
+        for (let tweet of Object.keys(data.statuses)) {
             tweets.push({"datetime": tweet.created_at, "text": tweet.text});
         }
         callback(tweets);
